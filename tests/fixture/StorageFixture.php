@@ -17,7 +17,7 @@ class StorageFixture
             'class'    => 'qeephp\\storage\\mysql\\DataSource',
             'host'     => 'localhost',
             'login'    => 'root',
-            'password' => 'google',
+            'password' => '',
             'database' => 'qeephp_test_db1',
             'encoding' => 'utf8',
         );

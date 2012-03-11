@@ -71,7 +71,7 @@ abstract class ModelTestHelper extends TestCase
 
     protected function _check_post($post, $post_id)
     {
-        $this->assertType(Post::meta()->class, $post);
+        $this->assertInstanceOf(Post::meta()->class, $post);
         $record = $this->_recordset[$post_id];
         $record['postId'] = $post_id;
         unset($record['post_id']);

@@ -38,7 +38,7 @@ class ConfigTest extends TestCase
         $this->assertEquals('default value', Config::get('not exists key', 'default value'));
 
         $nested = Config::get('nested');
-        $this->assertType('array', $nested);
+        $this->assertInternalType('array', $nested);
         $this->assertEquals(self::$_test_config['nested'], $nested);
 
         $this->assertEquals('subvalue1', Config::get('nested/subkey1'));

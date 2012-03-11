@@ -52,15 +52,15 @@ class ActionTest extends TestCase
     function test_view()
     {
         $view = $this->_app->view('index', array());
-        $this->assertType('qeephp\\mvc\\view', $view);
+        $this->assertInstanceOf('qeephp\\mvc\\view', $view);
         $this->assertEquals('indexView', $view->execute());
 
         $view = $this->_app->view('help', array());
-        $this->assertType('qeephp\\mvc\\view', $view);
+        $this->assertInstanceOf('qeephp\\mvc\\view', $view);
         $this->assertEquals('helpView', $view->execute());
 
         $view = $this->_app->view('tests.empty', array());
-        $this->assertType('qeephp\\mvc\\view', $view);
+        $this->assertInstanceOf('qeephp\\mvc\\view', $view);
         $this->assertEquals('tests.emptyView', $view->execute());
 
         $this->assertEquals('viewView', $this->_app->run('view'));
@@ -79,17 +79,17 @@ class ActionTest extends TestCase
             'more' => $more_tool_config,
         ));
         $holder = $this->_app->tool('holder');
-        $this->assertType('tests\\fixture\\tools\\HolderTool', $holder);
+        $this->assertInstanceOf('tests\\fixture\\tools\\HolderTool', $holder);
 
         $holder2 = $this->_app->tool('holder');
         $this->assertSame($holder, $holder2);
 
         $other = $this->_app->tool('other');
-        $this->assertType('tests\\fixture\\tools\\OtherTool', $other);
+        $this->assertInstanceOf('tests\\fixture\\tools\\OtherTool', $other);
         $this->assertEquals($other_tool_config, $other->config);
 
         $more = $this->_app->tool('more');
-        $this->assertType('tests\\fixture\\tools\\more\\MoreTool', $more);
+        $this->assertInstanceOf('tests\\fixture\\tools\\more\\MoreTool', $more);
         $this->assertEquals($more_tool_config, $more->config);
     }
 

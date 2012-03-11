@@ -25,7 +25,7 @@ class DataSourceTest extends TestCase
 
     function test_handle()
     {
-        $this->assertType('resource', $this->_ds->handle());
+        $this->assertInternalType('resource', $this->_ds->handle());
     }
 
     function test_find_one()
@@ -64,7 +64,7 @@ class DataSourceTest extends TestCase
         $checks = array($post1, $post2, $post3);
         foreach ($checks as $post)
         {
-            $this->assertType('array', $post);
+            $this->assertInternalType('array', $post);
             $this->assertArrayHasKey('post_id', $post);
             $this->assertEquals(1, $post['post_id']);
             $this->assertArrayHasKey('title', $post);
@@ -128,11 +128,11 @@ class DataSourceTest extends TestCase
         $checks = array($posts1, $posts2, $posts3);
         foreach ($checks as $offset => $posts)
         {
-            $this->assertType('array', $posts);
+            $this->assertInternalType('array', $posts);
             $this->assertEquals(3, count($posts));
             foreach ($posts as $post)
             {
-                $this->assertType('array', $post);
+                $this->assertInternalType('array', $post);
                 $this->assertArrayHasKey('post_id', $post);
                 $this->assertArrayHasKey('title', $post);
                 
@@ -184,8 +184,8 @@ class DataSourceTest extends TestCase
         $last_post_id = $ds->insert('post', $last_post, $alias);
         // #END EXAMPLE
 
-        $this->assertType(\PHPUnit_Framework_Constraint_IsType::TYPE_INT, $new_post_id);
-        $this->assertType(\PHPUnit_Framework_Constraint_IsType::TYPE_INT, $last_post_id);
+        $this->assertInstanceOf(\PHPUnit_Framework_Constraint_IsType::TYPE_INT, $new_post_id);
+        $this->assertInstanceOf(\PHPUnit_Framework_Constraint_IsType::TYPE_INT, $last_post_id);
         $this->assertTrue($new_post_id > 0, "\$new_post_id = {$new_post_id}");
         $this->assertEquals($new_post_id + 1, $other_post_id);
     }
@@ -290,7 +290,7 @@ class DataSourceTest extends TestCase
         // #END EXAMPLE
 
         $post = $this->_ds->find_one('post', array('post_id' => $new_post_id));
-        $this->assertType('array', $post);
+        $this->assertInternalType('array', $post);
         $this->assertArrayHasKey('post_id', $post);
         $this->assertArrayHasKey('title', $post);
         $this->assertEquals($new_post['title'], $post['title']);

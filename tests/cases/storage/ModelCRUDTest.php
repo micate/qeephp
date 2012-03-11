@@ -85,10 +85,10 @@ class ModelCRUDTest extends ModelTestHelper
         $posts = Post::find(array('post_id > ? AND post_id < ?', 1, 5))->fetch_all();
         // #END EXAMPLE
 
-        $this->assertType('array', $posts);
+        $this->assertInternalType('array', $posts);
         foreach($posts as $post)
         {
-            $this->assertType($post_class, $post);
+            $this->assertInstanceOf($post_class, $post);
             $this->_check_post($post, $post->id());
         }
     }
@@ -121,7 +121,7 @@ class ModelCRUDTest extends ModelTestHelper
 
         $this->assertEquals($post_id, $id);
         $record = $this->_get_post_record(99);
-        $this->assertType('array', $record);
+        $this->assertInternalType('array', $record);
         $this->assertEquals(99, $record['post_id']);
         $this->assertEquals('post 99', $record['title']);
         $this->assertEquals('author 99', $record['author']);
@@ -147,7 +147,7 @@ class ModelCRUDTest extends ModelTestHelper
         $id = $comment->save();
         // #END EXAMPLE
 
-        $this->assertType('int', $id);
+        $this->assertInternalType('int', $id);
         $this->assertEquals($id, $comment->id());
         $this->assertEquals($id, $comment->comment_id);
 
@@ -172,7 +172,7 @@ class ModelCRUDTest extends ModelTestHelper
         $id = $rev->save();
         // #END EXAMPLE
 
-        $this->assertType('array', $id);
+        $this->assertInternalType('array', $id);
         $this->assertArrayHasKey('rev_id', $id);
         $this->assertArrayHasKey('postId', $id);
         $obj_id = $rev->id();

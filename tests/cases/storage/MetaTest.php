@@ -138,15 +138,15 @@ class MetaTest extends TestCase
         $meta = new Meta('tests\\fixture\\models\\users\\Member');
         $this->assertTrue($meta->use_extends);
         $extends = $meta->extends;
-        $this->assertType('array', $extends);
+        $this->assertInternalType('array', $extends);
         $this->assertArrayHasKey('by', $extends);
         $this->assertArrayHasKey('classes', $extends);
         $classes = $extends['classes'];
-        $this->assertType('array', $classes);
+        $this->assertInternalType('array', $classes);
         foreach ($classes as $offset => $class_name)
         {
-            $this->assertType('int', $offset);
-            $this->assertType('string', $class_name);
+            $this->assertInternalType('int', $offset);
+            $this->assertInternalType('string', $class_name);
         }
     }
 
@@ -169,7 +169,7 @@ class MetaTest extends TestCase
         };
         $meta->add_event_listener(Meta::BEFORE_CREATE_EVENT, $listener);
         $event = $meta->raise_event(Meta::BEFORE_CREATE_EVENT);
-        $this->assertType('qeephp\\Event', $event);
+        $this->assertInstanceOf('qeephp\\Event', $event);
         $this->assertTrue($event->completed);
         $this->assertTrue($event->continue);
         $this->assertEquals(1, $event->result);
